@@ -182,6 +182,13 @@ button {
   top: 0;
 }
 
+/* blog part */
+.blog-header{
+  margin-top: 20px;  
+  color: #49d390;  
+}
+
+
 @media only screen and (max-width: 700px) {
   .box-container {
     padding: 0 20px;
