@@ -142,9 +142,9 @@ button {
 }
 
 #histories {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
 }
 
 .card {
@@ -152,11 +152,12 @@ button {
   height: 100%;
   padding: 50px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding: 20px 30px;
   color: white;
-  border-radius: 15px;
+  border-radius: 7px;
   background: rgb(255, 255, 255);
   background: linear-gradient(
     92.49deg,
@@ -188,13 +189,34 @@ button {
   color: #49d390;  
 }
 
+.blog-details{  
+  margin: 5px 0 65px 0;
+  color: rgb(226, 218, 218);
+  font-size: 18px;
+}
 
-@media only screen and (max-width: 700px) {
+
+/* responsive for mobile device */
+@media only screen and (min-width: 0px) and (max-width: 575px) {
   .box-container {
     padding: 0 20px;
     width: 100%;
   }
-  .card {
-    flex-direction: column;
+  #histories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+}
+
+/* responsive for tab */
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  #histories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .card{
+    flex-direction: row;
   }
 }
