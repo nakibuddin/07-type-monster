@@ -42,10 +42,5 @@ function displayHistory() {
 
     histories.appendChild(newRow);
   });
-
-  // const newLine = document.createElement('p');
-  // newLine.innerHTML = `<br><br>`;
-  // histories.appendChild(newLine);  
-
 }
 // localStorage.clear();

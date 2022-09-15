@@ -16,12 +16,16 @@ let typeSpeedWpm = 0;
 let accuracy = 0;
 
 // Load and display question
-fetch("./texts.json")
+const loadQuestion = () => {
+  fetch("./texts.json")
   .then((res) => res.json())
   .then((data) => {
     questionText = data[Math.floor(Math.random() * data.length)];
     question.innerHTML = questionText;
   });
+};
+loadQuestion();
+
 
 // checks the user typed character and displays accordingly
 const typeController = (e) => {
@@ -112,6 +116,7 @@ const gameOver = () => {
   addHistory(questionText, timeTaken, errorCount, typeSpeedWpm, accuracy);
 
   // restart everything
+  loadQuestion();
   document.getElementById("show-time").style.display = 'none';
   startTime = null;
   errorCount = 0;
