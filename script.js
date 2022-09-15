@@ -10,6 +10,10 @@ let userText = "";
 let errorCount = 0;
 let startTime;
 let questionText = "";
+let rightCharacterCount = 0;
+let totalCharacterCount = 0;
+let typeSpeedWpm = 0;
+let accuracy = 0;
 
 // Load and display question
 fetch("./texts.json")
@@ -21,7 +25,7 @@ fetch("./texts.json")
 
 // checks the user typed character and displays accordingly
 const typeController = (e) => {
-  const newLetter = e.key;
+  const newLetter = e.key;  
 
   // Handle backspace press
   if (newLetter == "Backspace") {
@@ -44,9 +48,12 @@ const typeController = (e) => {
 
   if (newLetterCorrect) {
     display.innerHTML += `<span class="green">${newLetter === " " ? "▪" : newLetter}</span>`;
+    rightCharacterCount++;
+    totalCharacterCount++;
   } else {
     display.innerHTML += `<span class="red">${newLetter === " " ? "▪" : newLetter}</span>`;
-    errorCount ++;    
+    errorCount ++;       
+    totalCharacterCount++;
   }
 
   // check if given question text is equal to user typed text
@@ -68,7 +75,19 @@ const gameOver = () => {
   // the current time is the finish time
   // so total time taken is current time - start time
   const finishTime = new Date().getTime();
-  const timeTaken = (finishTime - startTime) / 1000;
+  const timeTaken = ((finishTime - startTime) / 1000) .toFixed(0);
+  const timeInMinute = timeTaken / 60;
+  const characterPerMin = Math.floor(rightCharacterCount / timeInMinute);
+  typeSpeedWpm = Math.floor( characterPerMin/5 );
+  
+  if(errorCount === 0){
+    accuracy = 100;
+  }
+  else{
+    accuracy = ((rightCharacterCount-errorCount)/rightCharacterCount)*100;
+    accuracy = Math.floor(accuracy);
+  }  
+  console.log(accuracy);
 
   // show result modal
   resultModal.innerHTML = "";
@@ -83,16 +102,21 @@ const gameOver = () => {
     <h1>Finished!</h1>
     <p>You took: <span class="bold">${timeTaken}</span> seconds</p>
     <p>You made <span class="bold red">${errorCount}</span> mistakes</p>
+    <p> ------------------------------------ </P>
+    <p>Type speed: <span class="bold green2">${typeSpeedWpm}</span> wpm </p>
+    <p>Type accuracy: <span class="bold green2">${accuracy}</span> % </p> <br>    
     <button onclick="closeModal()">Close</button>
   `;
 
-  addHistory(questionText, timeTaken, errorCount);
+  addHistory(questionText, timeTaken, errorCount, typeSpeedWpm, accuracy);
 
   // restart everything
   startTime = null;
   errorCount = 0;
   userText = "";
   display.classList.add("inactive");
+  rightCharacterCount = 0;
+  totalCharacterCount = 0;
 };
 
 const closeModal = () => {
