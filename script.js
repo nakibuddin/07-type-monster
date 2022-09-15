@@ -52,11 +52,11 @@ const typeController = (e) => {
 
   display.style.whiteSpace = 'pre';
   if (newLetterCorrect) {    
-    display.innerHTML += `<span class="green">${newLetter === " " ? "  " : newLetter}</span>`;    
+    display.innerHTML += `<span class="green">${newLetter === " " ? "  " : newLetter}</span>`;     
     rightCharacterCount++;
     totalCharacterCount++;
   } else {
-    display.innerHTML += `<span class="red">${newLetter === " " ? " " : newLetter}</span>`;    
+    display.innerHTML += `<span class="red">${newLetter === " " ? " " : newLetter}</span>`;        
     errorCount ++;       
     totalCharacterCount++;
   }
@@ -115,7 +115,7 @@ const gameOver = () => {
 
   addHistory(questionText, timeTaken, errorCount, typeSpeedWpm, accuracy);
 
-  // restart everything
+  // restart everything  
   loadQuestion();
   document.getElementById("show-time").style.display = 'none';
   startTime = null;
@@ -153,7 +153,7 @@ const start = () => {
       startTime = new Date().getTime();
     }
     count--;
-  }, 100);
+  }, 1000);
 };
 
 // START Countdown
