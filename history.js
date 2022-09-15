@@ -7,7 +7,7 @@ function addHistory(questionText, timeTaken, errorCount, typeSpeedWpm, accuracy)
   newRow.innerHTML = `
   <h3>${questionText}</h3>
   <div>
-  <p>You took: <span class="bold">${timeTaken}</span> seconds</p>
+  <p>You took: <span class="bold green2">${timeTaken}</span> seconds</p>
   <p>You made <span class="bold red">${errorCount}</span> mistakes</p>
   <p>Type speed: <span class="bold green2">${typeSpeedWpm}</span> wpm</p>
   <p>Type accuracy: <span class="bold green2">${accuracy}</span> % </p>
@@ -33,7 +33,7 @@ function displayHistory() {
 
     newRow.innerHTML = `
     <h3>${test.questionText}</h3>
-    <p>You took: <span class="bold">${test.timeTaken}</span> seconds</p>
+    <p>You took: <span class="bold green2">${test.timeTaken}</span> seconds</p>
     <p>You made <span class="bold red">${test.errorCount}</span> mistakes</p>
     <p> -------------------------------- </P>
     <p>Type speed: <span class="bold green2">${test.typeSpeedWpm}</span> wpm</p>
@@ -42,5 +42,10 @@ function displayHistory() {
 
     histories.appendChild(newRow);
   });
+
+  // const newLine = document.createElement('p');
+  // newLine.innerHTML = `<br><br>`;
+  // histories.appendChild(newLine);  
+
 }
 // localStorage.clear();

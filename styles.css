@@ -1,5 +1,6 @@
 * {
   padding: 0;
+  padding-bottom: 5px;
   margin: 0;
   box-sizing: border-box;
 }
@@ -76,6 +77,7 @@ body {
   padding: 2rem;
 }
 #show-time{
+  display: none;
   text-align: center;
   color: white;
   margin: 10px 0;
@@ -84,8 +86,11 @@ body {
 .green {
   color: #9dffad;
 }
-.green2 {
-  color: rgb(0, 255, 0);
+.green2 {  
+  color: rgb(93, 252, 93);
+  /* color: #9DFFAD; */
+  /* color: #49d390; */
+
 }
 .red {
   color: #eb6565;

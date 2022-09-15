@@ -46,12 +46,13 @@ const typeController = (e) => {
 
   const newLetterCorrect = validate(newLetter);
 
-  if (newLetterCorrect) {
-    display.innerHTML += `<span class="green">${newLetter === " " ? "▪" : newLetter}</span>`;
+  display.style.whiteSpace = 'pre';
+  if (newLetterCorrect) {    
+    display.innerHTML += `<span class="green">${newLetter === " " ? "  " : newLetter}</span>`;    
     rightCharacterCount++;
     totalCharacterCount++;
   } else {
-    display.innerHTML += `<span class="red">${newLetter === " " ? "▪" : newLetter}</span>`;
+    display.innerHTML += `<span class="red">${newLetter === " " ? " " : newLetter}</span>`;    
     errorCount ++;       
     totalCharacterCount++;
   }
@@ -100,7 +101,7 @@ const gameOver = () => {
   // show result
   resultModal.innerHTML += `
     <h1>Finished!</h1>
-    <p>You took: <span class="bold">${timeTaken}</span> seconds</p>
+    <p>You took: <span class="bold green2">${timeTaken}</span> seconds</p>
     <p>You made <span class="bold red">${errorCount}</span> mistakes</p>
     <p> ------------------------------------ </P>
     <p>Type speed: <span class="bold green2">${typeSpeedWpm}</span> wpm </p>
@@ -111,6 +112,7 @@ const gameOver = () => {
   addHistory(questionText, timeTaken, errorCount, typeSpeedWpm, accuracy);
 
   // restart everything
+  document.getElementById("show-time").style.display = 'none';
   startTime = null;
   errorCount = 0;
   userText = "";
@@ -125,9 +127,10 @@ const closeModal = () => {
 };
 
 const start = () => {
-  // If already started, do not start again
-  if (startTime) return;
+  // If already started, do not start again 
+  if (startTime) return;  
 
+  document.getElementById("show-time").style.display = 'block';
   let count = 3;
   countdownOverlay.style.display = "flex";
 
